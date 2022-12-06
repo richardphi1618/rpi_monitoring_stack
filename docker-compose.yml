@@ -1,0 +1,58 @@
+version: "3.3"
+
+services:
+
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    hostname: influxdb
+    restart: always
+    ports:
+      - "8086:8086"
+    volumes:
+      - /home/richard/docker/influxdb-storage:/var/lib/influxdb
+
+  chronograf:
+    image: chronograf:latest
+    container_name: chronograf
+    hostname: chronograf
+    restart: always
+    ports:
+      - "8888:8888"
+    volumes:
+      - /home/richard/docker/chronograf/chronograf-storage:/var/lib/chronograf
+    depends_on:
+      - influxdb
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    hostname: grafana
+    restart: always
+    ports:
+      - "3000:3000" # expose for localhost
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - /home/richard/docker/grafana:/etc/grafana
+
+  node-red:
+    image: nodered/node-red:latest
+    container_name: node-red
+    hostname: nodered
+    restart: always
+    ports:
+      - "1880:1880"
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    volumes:
+      - nodered_data:/data
+
+volumes:
+  nodered_data:
+  grafana_data:
