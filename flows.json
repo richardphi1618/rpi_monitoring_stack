@@ -1,0 +1,553 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1890881e.83819",
+        "type": "ui_group",
+        "name": "Col1",
+        "tab": "c3173234.2636e",
+        "order": 1,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "c5f1b8aa.45bc08",
+        "type": "ui_group",
+        "name": "Actions",
+        "tab": "c3173234.2636e",
+        "order": 4,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "9a96a8b1.92db78",
+        "type": "ui_group",
+        "name": "Col2",
+        "tab": "c3173234.2636e",
+        "order": 2,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "72fc319.cc425d",
+        "type": "ui_group",
+        "name": "Col3",
+        "tab": "c3173234.2636e",
+        "order": 3,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "c3173234.2636e",
+        "type": "ui_tab",
+        "name": "RPi Control",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "04e3eaac15bcddad",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "2653a0b0.26d638",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "1890881e.83819",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "CPU Temperature",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fba68adf.14e13",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "vcgencmd measure_temp",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "RPi Temp.",
+        "x": 350,
+        "y": 140,
+        "wires": [
+            [
+                "fa5b499.e176cb8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7c8379de.068868",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 144.5,
+        "y": 148.25,
+        "wires": [
+            [
+                "fba68adf.14e13",
+                "972ece2a.3dbe8",
+                "6242be99.26ac88"
+            ]
+        ]
+    },
+    {
+        "id": "fa5b499.e176cb8",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "str = msg.payload\nmsg.payload = str.substring(5,9);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 140,
+        "wires": [
+            [
+                "2653a0b0.26d638",
+                "28b64a2c.b32116"
+            ]
+        ]
+    },
+    {
+        "id": "683a2b05.736204",
+        "type": "ui_button",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "c5f1b8aa.45bc08",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Reboot",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 120,
+        "y": 520,
+        "wires": [
+            [
+                "1cf31554.2aaa63"
+            ]
+        ]
+    },
+    {
+        "id": "1cf31554.2aaa63",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "sudo reboot",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "Reboot",
+        "x": 338,
+        "y": 520,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "38e53dbf.ca594a",
+        "type": "ui_button",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "c5f1b8aa.45bc08",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Shutdown",
+        "color": "",
+        "bgcolor": "red",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 128.5,
+        "y": 564.25,
+        "wires": [
+            [
+                "c409cae5.8e4128"
+            ]
+        ]
+    },
+    {
+        "id": "c409cae5.8e4128",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "sudo shutdown -h now",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "Shutdown",
+        "x": 349.5,
+        "y": 582.25,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "28b64a2c.b32116",
+        "type": "ui_chart",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "1890881e.83819",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "outputs": 2,
+        "x": 710,
+        "y": 180,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "972ece2a.3dbe8",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "top -d 0.5 -b -n2 | grep \"Cpu(s)\"|tail -n 1 | awk '{print $2 + $4}'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "CPU Load",
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "b9372186.ed1a5"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6242be99.26ac88",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "Free Memory",
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "9024e549455e1b6c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b9372186.ed1a5",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "1890881e.83819",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Processor",
+        "label": "CPU",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "x": 710,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9b301b09.8c0468",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "9a96a8b1.92db78",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Memory",
+        "label": "RAM",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 700,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "270f61f0.9af05e",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "df -h",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "Disk Usage",
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "d70b7556.a0a9e"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7ca6ecb.7512014",
+        "type": "ui_gauge",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "group": "72fc319.cc425d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Disk",
+        "label": "Usage",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "x": 710,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d70b7556.a0a9e",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "var re = /([0-9]{2})%/\nvar idx = msg.payload.search(re);\nvar str = msg.payload;\nif (idx >=0) {\n    str = msg.payload.substring(idx, idx + 2);\n}\nmsg.payload = str;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 380,
+        "wires": [
+            [
+                "7ca6ecb.7512014"
+            ]
+        ]
+    },
+    {
+        "id": "59103f97.07fed",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "270f61f0.9af05e"
+            ]
+        ]
+    },
+    {
+        "id": "9024e549455e1b6c",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 1",
+        "func": "msg.payload = parseFloat(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [
+                "9b301b09.8c0468"
+            ]
+        ]
+    }
+]
